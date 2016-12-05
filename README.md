@@ -9,5 +9,9 @@ This repository contains data and code used in [insert reference](link). It is o
 To reproduce the results of the manuscrpit in your computer, first clone the repository locally, and then simply running [this notebook](notebooks/Automatic_classification_SVM_acrosome_dataset.ipynb) will recreate all files in the [output folder](output/).
 
 ### Dependencies
-
-
+The code depends only on the following standard python packages:
++ numpy
++ pandas
++ matplotlib
++ seaborn
++ sklearn
