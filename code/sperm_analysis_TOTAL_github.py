@@ -10,11 +10,9 @@ from scipy import stats
 import vtk
    
 
-
-
-def write_Mean_Gaussian_curvature_single_cell(vtk_file=None,spermatids=True) :
+def write_Mean_Gaussian_curvature_single_cell(vtk_file=None,spermatids=None) :
     """
-    Blah blah 
+    Computes the local mean and gaussian curvatures of a vtk mesh.
     """
     if spermatids: 
         write_file = '../output/Observables_Curvature_Spermatids.dat'
@@ -29,9 +27,11 @@ def write_Mean_Gaussian_curvature_single_cell(vtk_file=None,spermatids=True) :
     file = open(write_file,'a')
     file_gauss = open(write_file_local_gauss,'w')
     file_mean = open(write_file_local_mean,'w')
+
     set_printoptions(threshold=np.inf)
 
     filename_upload = vtk_file
+    mesh_name = vtk_file.split('.')[0]
     print filename_upload
     reader = vtk.vtkXMLPolyDataReader()
     reader.SetFileName(filename_upload)
@@ -49,15 +49,15 @@ def write_Mean_Gaussian_curvature_single_cell(vtk_file=None,spermatids=True) :
         curvatures[idx].SetCurvatureTypeToMean()
 
     for idx, item in enumerate(sources):
-        #print curvatures[idx]
+        
         curvatures[idx].SetInputData(sources[idx])
         curvatures[idx].Update() 
-        #print curvatures[idx]
         
         writer_Mean = vtk.vtkXMLPolyDataWriter();
         writer_Gaussian = vtk.vtkXMLPolyDataWriter();
-        writer_Mean.SetFileName('../output/Mean_curvature_Mesh_#0000_T0000.vtp');
-        writer_Gaussian.SetFileName('../output/Gaussian_curvature_Mesh_#0000_T0000.vtp');
+        writer_Mean.SetFileName('../output/Mean_curvature_'+mesh_name+'.vtp');
+        writer_Gaussian.SetFileName('../output/Gaussian_curvature_'+mesh_name+'.vtp');
+        
         writer_Gaussian.SetInputData(curvatures[0].GetOutput())
         writer_Mean.SetInputData(curvatures[1].GetOutput())
         writer_Gaussian.Write()
@@ -76,15 +76,10 @@ def write_Mean_Gaussian_curvature_single_cell(vtk_file=None,spermatids=True) :
         
 
 
-
-
-
 def Kolmogorov_Smirnov_test() :
 
     whats = ['Surface','Volume','Real_Sphericity','Relative_Error_Gaussian_curvature','Relative_Error_Mean_curvature','Average_Mean_curvature','Average_Gaussian_curvature']
 
-
-    
     print "Kolmogorov_Smirnov_test"
 
     for what in whats:
@@ -108,7 +103,12 @@ def Kolmogorov_Smirnov_test() :
         file.close
 
 if __name__ == '__main__':
-    print "# Running code with example mesh"
+    
     example_input_mesh = "../data/Example_mesh.vtk"
-    write_Mean_Gaussian_curvature_single_cell(vtk_file=example_input_mesh)
+    print "# Running code with example mesh: %s" % example_input_mesh
+    write_Mean_Gaussian_curvature_single_cell(vtk_file=example_input_mesh,spermatids=True)
     #Kolmogorov_Smirnov_test() 
+
+
+
+
