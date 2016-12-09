@@ -12,10 +12,11 @@ import vtk
 
 
 
-def write_Mean_Gaussian_curvature_single_cell() :
-    spermatids = 'YES'
-
-    if spermatids == 'YES' : 
+def write_Mean_Gaussian_curvature_single_cell(vtk_file=None,spermatids=True) :
+    """
+    Blah blah 
+    """
+    if spermatids: 
         write_file = '../output/Observables_Curvature_Spermatids.dat'
         write_file_local_gauss = '../output/Gaussian_local_curv_Spermatids.dat'
         write_file_local_mean = '../output/Mean_local_curv_Spermatids.dat'
@@ -23,14 +24,14 @@ def write_Mean_Gaussian_curvature_single_cell() :
         write_file = '../output/Observables_Spermatozoa.dat'
         write_file_local_gauss = '../output/Gaussian_local_curv_Spermatozoa.dat'
         write_file_local_mean = '../output/Mean_local_curv_Spermatozoa.dat'
+
+    
     file = open(write_file,'a')
     file_gauss = open(write_file_local_gauss,'w')
     file_mean = open(write_file_local_mean,'w')
     set_printoptions(threshold=np.inf)
 
-
- 
-    filename_upload = '../data/Mesh_#0000_T0000.vtk' 
+    filename_upload = vtk_file
     print filename_upload
     reader = vtk.vtkXMLPolyDataReader()
     reader.SetFileName(filename_upload)
@@ -106,4 +107,8 @@ def Kolmogorov_Smirnov_test() :
         file.write(s)
         file.close
 
-
+if __name__ == '__main__':
+    print "# Running code with example mesh"
+    example_input_mesh = "../data/Example_mesh.vtk"
+    write_Mean_Gaussian_curvature_single_cell(vtk_file=example_input_mesh)
+    #Kolmogorov_Smirnov_test() 
