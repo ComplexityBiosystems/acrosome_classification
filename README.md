@@ -3,7 +3,7 @@ This repository contains data and code used in [insert reference](link). It is o
 
 + [data/](data/) two csv files containing the 7 morphological features for spermatids and spermatozoa
 + [notebooks/](notebooks/) a jupyter notebook in python, which generates all results and figures of the manuscript.
-+ [code/](code/) some functions are defined here, and the imported into the notebook.
++ [code/](code/) python code for cross validation and to compute local curvatures via vtk. 
 + [output/](output/) all figures and some additional ouput.
 
 To reproduce the results of the manuscrpit in your computer, first clone the repository locally, and then simply running [this notebook](notebooks/Automatic_classification_SVM_acrosome_dataset.ipynb) will recreate all files in the [output folder](output/).
@@ -15,3 +15,5 @@ The code depends only on the following standard python packages:
 + matplotlib
 + seaborn
 + sklearn
+
+In addition, the [vtk](www.vtk.org) package is used to extract local curvatures from mesh files, but this is not necessary to reproduce the results in the manuscript. 
