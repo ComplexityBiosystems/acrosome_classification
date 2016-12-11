@@ -20,7 +20,9 @@ def write_Mean_Gaussian_curvature_single_cell(vtk_file=None,spermatids=None) :
 
     Output:
     ======
-    
+    Writes several files (see source for details) with the Mean and Gaussian local curvatures
+    of each vertex in the mesh, vtp files with the mesh and the curvatures, and appends to
+    files containing summary statistics that are used as features for classification.    
     """
     if spermatids: 
         write_file = '../output/Observables_Curvature_Spermatids.dat'
