@@ -1,7 +1,7 @@
 # Acrosome Classification with SVM
 This repository contains data and code used in [insert reference](link). It is organized as follows:
 
-+ [data/](data/) two csv files containing the 7 morphological features for spermatids and spermatozoa
++ [data/](data/) two csv files containing the 7 morphological features for spermatids and spermatozoa acrosome cells.
 + [notebooks/](notebooks/) a jupyter notebook in python, which generates all results and figures of the manuscript.
 + [code/](code/) python code for cross validation and to compute local curvatures via vtk. 
 + [output/](output/) all figures and some additional ouput.
@@ -16,4 +16,4 @@ The code depends only on the following standard python packages:
 + seaborn
 + sklearn
 
-In addition, the [vtk](www.vtk.org) package is used to extract local curvatures from mesh files, but this is not necessary to reproduce the results in the manuscript. 
+In addition, the [vtk](http://www.vtk.org/) package is used to extract local curvatures from mesh files, but this is not necessary to reproduce the results in the manuscript. 
